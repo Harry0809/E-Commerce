@@ -20,16 +20,25 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe({
-        next: (response) => {
-          localStorage.setItem('token', response.token);
-          this.router.navigate(['/']); // ✅ Redirect after login
-        },
-        error: () => {
-          this.errorMessage = 'Invalid email or password'; // ✅ Handle errors
-        }
-      });
+    if (this.loginForm.invalid) {
+      this.errorMessage = 'Please enter valid email and password.';
+      return;
     }
+
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (response) => {
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          this.router.navigate(['/auth/home']);
+        } 
+      },
+      error: () => {
+        this.errorMessage = 'Invalid email or password. Please try again.';
+      }
+    });
+  }
+
+  goToRegister() {
+    this.router.navigate(['/auth/register']); 
   }
 }

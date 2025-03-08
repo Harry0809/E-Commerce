@@ -7,7 +7,7 @@
         <div>
           <h3>{{ item.title }}</h3>
           <p>Price: ${{ item.price }}</p>
-          <input type="number" [value]="item.quantity" (ngModelChange)="updateQuantity(item, $event)" min="1"/>
+          <input type="number" [(ngModel)]="item.quantity" (change)="updateQuantity(item, item.quantity)" min="1"/>
           <button (click)="removeItem(item)">Remove</button>
         </div>
       </div>

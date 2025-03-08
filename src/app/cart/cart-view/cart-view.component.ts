@@ -17,12 +17,15 @@ export class CartViewComponent implements OnInit {
   }
 
   loadCart() {
-    this.cartItems = this.cartService.getCart();
+    this.cartItems = this.cartService.getCart() ||  [];
     this.calculateTotal();
   }
 
-  updateQuantity(item: any, quantity: any) {
-    this.cartService.updateQuantity(item.id, quantity);
+  updateQuantity(item: any, quantity: string) {
+    const newQuantity = parseInt(quantity, 10); // 
+    if (!item || isNaN(newQuantity) || newQuantity < 1) return; 
+  
+    this.cartService.addToCart(item, newQuantity - item.quantity);
     this.loadCart();
   }
 
