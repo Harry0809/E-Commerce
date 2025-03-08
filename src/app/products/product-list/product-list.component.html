@@ -1,0 +1,35 @@
+<div class="product-list-container">
+    <h2>Product Listing</h2>
+  
+    <div class="filters">
+      <input type="text" [(ngModel)]="searchText" placeholder="Search by title" (input)="filterProducts()" />
+  
+      <select [(ngModel)]="category" (change)="filterProducts()">
+        <option value="">All Categories</option>
+        <option value="electronics">Electronics</option>
+        <option value="fashion">Fashion</option>
+      </select>
+  
+      <select [(ngModel)]="priceRange" (change)="filterProducts()">
+        <option value="">All Prices</option>
+        <option value="low">Below $50</option>
+        <option value="medium">$50 - $150</option>
+        <option value="high">Above $150</option>
+      </select>
+  
+      <select [(ngModel)]="sortBy" (change)="sortProducts()">
+        <option value="default">Default</option>
+        <option value="priceAsc">Price: Low to High</option>
+        <option value="priceDesc">Price: High to Low</option>
+      </select>
+    </div>
+  
+    <div class="products">
+      <div *ngFor="let product of filteredProducts" class="product-card">
+        <img [src]="product.image" alt="{{ product.title }}" />
+        <h3>{{ product.title }}</h3>
+        <p>${{ product.price }}</p>
+        <button [routerLink]="['/products', product.id]">View Details</button>
+      </div>
+    </div>
+  </div>

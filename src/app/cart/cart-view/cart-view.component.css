@@ -1,0 +1,38 @@
+.cart-container {
+    max-width: 600px;
+    margin: 50px auto;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .cart-item img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+  }
+  
+  .cart-item input {
+    width: 50px;
+    margin-left: 10px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    background: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background: #ccc;
+  }
+  
+  .cart-total {
+    margin-top: 20px;
+    font-size: 18px;
+  }
